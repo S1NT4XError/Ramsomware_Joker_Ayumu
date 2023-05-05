@@ -3,21 +3,10 @@ import os , threading , platform
 
 #Aca casi no hay diferencia con el encriptador solo el hecho de que aca programe para que borre las fotos que previamente cree
 
-def retornar_key():
-        if platform.system() == "Linux":
-            Rutas = ["/home/Desktop" , "/home/Escritorio"]
-            for i in rutas: 
-                if os.path.exists(i):
-                    ruta_p = f"{i}/key.key"
-                else:
-                    pass
-            return open(ruta_p , "rb").read() 
+def retornar_key(): 
+        return open("C:\\Windows\\Temp\\key.key" , "rb").read()
         
-        elif platform.system() == "Windows":  
-            return open("C:\\Windows\\Temp\\key.key" , "rb").read()
-        
-        else:
-            print("XD")
+
     
 def desencryptador(path , key):
     f = Fernet(key)
