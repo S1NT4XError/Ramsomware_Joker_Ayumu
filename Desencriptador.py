@@ -84,7 +84,7 @@ def main():
     except Exception:
         pass
         
-    DEFAULT_PATH = os.getenv("userprofile") + "\\Desktop\\Pruebas"
+    DEFAULT_PATH = os.getenv("userprofile")
     
     llave = retornar_key()
     Rutas = Rutas_a_desencriptar(DEFAULT_PATH , llave)
