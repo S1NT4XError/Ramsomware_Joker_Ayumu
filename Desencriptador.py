@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet 
-import os , threading , platform , ctypes
+import os , threading ,  ctypes , subprocess
 
 #Aca casi no hay diferencia con el encriptador solo el hecho de que aca programe para que borre las fotos que previamente cree
 
